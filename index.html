@@ -30,6 +30,14 @@
 
     <!-- CSS Customization -->
     <link rel="stylesheet" href="assets/css/custom.css">
+    <link rel="stylesheet" type="text/css" href="css/radarChart.css">
+    <link rel="stylesheet" type="text/css" href="css/dc.css"/>
+
+    <style>
+        #monthly-volume-chart g.y {
+            display: none;
+        }
+    </style>
 </head> 
 
 <body class="header-fixed">
@@ -76,8 +84,8 @@
                     <div class="col-sm-6">
                         <ul class="list-inline right-topbar pull-right">
                             <li><a href="#">Account</a></li>
-                            <li><a href="shop-ui-add-to-cart.html">Wishlist (0)</a></li>
-                            <li><a href="shop-ui-login.html">Login</a> | <a href="shop-ui-register.html">Register</a></li>
+                            <li><a href="#">Wishlist (0)</a></li>
+                            <li><a href="#">Login</a> | <a href="#">Register</a></li>
                             <li><i class="search fa fa-search search-button"></i></li>
                         </ul>
                     </div>
@@ -125,7 +133,7 @@
                         
 
                         <!-- Main Demo -->
-                        <li><a href="../index.html">Jiang Hui Wen</a></li>
+                        <li><a href="#">Jiang Hui Wen</a></li>
                         <!-- Main Demo -->
                     </ul>
                 </div><!--/navbar-collapse-->
@@ -150,135 +158,92 @@
     <!--=== End Breadcrumbs v4 ===-->
 
     <!--=== Registre ===-->
-    <div class="log-reg-v3 content-md margin-bottom-30">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-7 md-margin-bottom-50">
-                    <h2 class="welcome-title">Welcome to PerfectJobQ</h2>
-                    <p>Suspendisse et tincidunt ipsum, et dignissim urna. Vestibulum nisl tortor, gravida at magna et, suscipit vehicula massa.</p><br>
-                    <div class="row margin-bottom-50">
-                        <div class="col-sm-4 md-margin-bottom-20">
-                            <div class="site-statistics">
-                                <span>20,039</span>
-                                <small>Products</small>
-                            </div>    
-                        </div>
-                        <div class="col-sm-4 md-margin-bottom-20">
-                            <div class="site-statistics">
-                                <span>54,283</span>
-                                <small>Reviews</small>
-                            </div>    
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="site-statistics">
-                                <span>376k</span>
-                                <small>Sale</small>
-                            </div>    
-                        </div>
-                    </div>
-                    <div class="members-number">
-                        <h3>Join more than <span class="shop-green">13,000</span> members worldwide</h3>
-                        <img class="img-responsive" src="assets/img/map.png" alt="">
-                    </div>    
-                </div>
+    <div class="container">
 
-                <div class="col-md-5">
-                    <form id="sky-form4" class="log-reg-block sky-form">
-                        <h2>Create New Account</h2>
+<h2>Workplace & Employment Condition  2005/01/01-2013/12/31</h2>
+<p>Color: Salary; Size: number of employee; x axis: number of employee increase; y axis: percentage of employee increase </p>
+<div class="row"><button class="btn-u btn-brd btn-brd-hover rounded btn-u-sea btn-u-lg pull-right" type="button" onclick="javascript:dc.filterAll(); dc.renderAll();" ><i class="fa fa-unlink"></i> Reset All Diagram Here</button>
+    <div id="yearly-bubble-chart" class="dc-chart">
+        <a class="reset" href="javascript:yearlyBubbleChart.filterAll();dc.redrawAll();"
+           style="display: none;">reset</a>
 
-                        <div class="login-input reg-input">
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <section>
-                                        <label class="input">
-                                            <input type="text" name="firstname" placeholder="First name" class="form-control">
-                                        </label>
-                                    </section>
-                                </div>
-                                <div class="col-sm-6">
-                                    <section>
-                                        <label class="input">
-                                            <input type="text" name="lastname" placeholder="Last name" class="form-control">
-                                        </label>
-                                    </section>        
-                                </div>
-                            </div>
-                            <label class="select margin-bottom-15">
-                                <select name="gender" class="form-control">
-                                    <option value="0" selected disabled>Gender</option>
-                                    <option value="1">Male</option>
-                                    <option value="2">Female</option>
-                                    <option value="3">Other</option>
-                                </select>
-                            </label>
-                            <div class="row margin-bottom-10">
-                                <div class="col-xs-6">
-                                    <label class="select">
-                                        <select name="month" class="form-control">
-                                            <option disabled="" selected="" value="0">Month</option>
-                                            <option>January</option>
-                                            <option>February</option>
-                                            <option>March</option>
-                                            <option>April</option>
-                                            <option>May</option>
-                                            <option>June</option>
-                                            <option>July</option>
-                                            <option>August</option>
-                                            <option>September</option>
-                                            <option>October</option>
-                                            <option>November</option>
-                                            <option>December</option>
-                                        </select>
-                                    </label>    
-                                </div>
-                                <div class="col-xs-3">
-                                    <input type="text" name="day" placeholder="Day" class="form-control">
-                                </div>
-                                <div class="col-xs-3">
-                                    <input type="text" name="year" placeholder="Year" class="form-control">
-                                </div>
-                            </div>
-                            <section>
-                                <label class="input">
-                                    <input type="text" name="username" placeholder="Username" class="form-control">
-                                </label>
-                            </section>                            
-                            <section>
-                                <label class="input">
-                                    <input type="email" name="email" placeholder="Email address" class="form-control">
-                                </label>
-                            </section>                                
-                            <section>
-                                <label class="input">
-                                    <input type="password" name="password" placeholder="Password" id="password" class="form-control">
-                                </label>
-                            </section>                                
-                            <section>
-                                <label class="input">
-                                    <input type="password" name="passwordConfirm" placeholder="Confirm password" class="form-control">
-                                </label>
-                            </section>                                
-                        </div>
-
-                        <label class="checkbox margin-bottom-10">
-                            <input type="checkbox" name="checkbox"/>
-                            <i></i>
-                            Subscribe to our newsletter to get the latest offers
-                        </label>
-                        <label class="checkbox margin-bottom-20">
-                            <input type="checkbox" name="checkbox"/>
-                            <i></i>
-                            I have read agreed with the <a href="#">terms &amp; conditions</a>
-                        </label>
-                        <button class="btn-u btn-u-sea-shop btn-block margin-bottom-20" type="submit">Create Account</button>
-                    </form>
-
-                    <div class="margin-bottom-20"></div>
-                    <p class="text-center">Already you have an account? <a href="shop-ui-login.html">Sign In</a></p>
-                </div>
-            </div><!--/end row-->
-        </div><!--/end container-->
+        <div class="clearfix"></div>
     </div>
+</div>
+
+<div class="row"><CENTER>
+ <!--   <div id="gain-loss-chart">
+        <strong>Days by Gain/Loss</strong>
+        <a class="reset" href="javascript:gainOrLossChart.filterAll();dc.redrawAll();" style="display: none;">reset</a>
+
+        <div class="clearfix"></div>
+    </div>
+  -->
+    <div id="quarter-chart">
+        <strong>Quarters</strong>
+        <a class="reset" href="javascript:quarterChart.filterAll();dc.redrawAll();" style="display: none;">reset</a>
+
+        <div class="clearfix"></div>
+    </div>
+
+    <div id="day-of-week-chart">
+        <strong>Industry</strong>
+        <a class="reset" href="javascript:dayOfWeekChart.filterAll();dc.redrawAll();" style="display: none;">reset</a>
+
+        <div class="clearfix"></div>
+    </div>
+
+    <!--Radar Chart Below-->
+    <div style="height:500px;weight:500px">
+        <div id="changeYear" onclick="changeYear()"><strong>2013</strong></div>
+        <div id="changeSector" onclick="testtest()"><strong>Construction</strong></div>
+        <div class="chart-container"></div>
+        
+    </div>
+
+    <!--<div id="fluctuation-chart">
+        <strong>Percentage increase of Employment(%)</strong>
+        <span class="reset" style="display: none;">range: <span class="filter"></span></span>
+        <a class="reset" href="javascript:fluctuationChart.filterAll();dc.redrawAll();" style="display: none;">reset</a>
+
+        <div class="clearfix"></div> 
+    </div>     -->
+</CENTER>
+</div>
+
+<div class="row">
+    <div id="monthly-move-chart">
+        <strong>Monthly Total Employee and Average Income Chart</strong>
+        <span class="reset" style="display: none;">range: <span class="filter"></span></span>
+        <a class="reset" href="javascript:moveChart.filterAll();volumeChart.filterAll();dc.redrawAll();"
+           style="display: none;">reset</a>
+
+        <div class="clearfix"></div>
+    </div>
+</div>
+
+<div class="row">
+    <div id="monthly-volume-chart">
+    </div>
+    <p class="muted pull-right" style="margin-right: 15px;">select a time range to zoom in</p>
+</div>
+<!--
+<div class="row">
+    <div>
+        <div class="dc-data-count">
+            <span class="filter-count"></span> selected out of <span class="total-count"></span> records | <a
+                href="javascript:dc.filterAll(); dc.renderAll();">Reset All</a>
+        </div>
+    </div>
+    <table class="table table-hover dc-data-table">
+    </table>
+</div>
+-->
+<div class="clearfix"></div>
+
+</div>
+
+</div>
     <!--=== End Registre ===-->     
 
     <!--=== Shop Suvbscribe ===-->
@@ -454,6 +419,87 @@
     </div>
     <!--=== End Footer v4 ===-->
 </div><!--/wrapper-->
+<!-- d3.js -->
+<script type="text/javascript" src="js/d3.js"></script>
+<script type="text/javascript" src="js/crossfilter.js"></script>
+<script type="text/javascript" src="js/dc.js"></script>
+<script type="text/javascript" src="js/colorbrewer.js"></script>
+
+<script type="text/javascript" src="stock.js"></script>
+
+<script src="http://d3js.org/d3.v3.js"></script>
+<script src="js/radar-chart.js"></script>
+<script src="js/radarChartData.js"></script>
+
+<script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-33628816-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function () {
+        var ga = document.createElement('script');
+        ga.type = 'text/javascript';
+        ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+
+<script>
+        var classname = document.getElementsByClassName("row _0");
+        var classname1 = document.getElementsByClassName("row _1");
+        var classname2= document.getElementsByClassName("row _2");
+        var classname3= document.getElementsByClassName("row _3");
+        var classname4= document.getElementsByClassName("row _4");
+        var classname5= document.getElementsByClassName("row _5");
+        var classname6= document.getElementsByClassName("row _6");
+        var classname7= document.getElementsByClassName("row _7");
+        var classname8= document.getElementsByClassName("row _8");
+        var classname9= document.getElementsByClassName("row _9");
+        var classname10= document.getElementsByClassName("row _10");
+
+        var bubble = document.getElementsByClassName("node");
+
+
+        var myFunction = function(){                
+            document.getElementById("changeSector").innerHTML = this.textContent;
+            testtest();
+                
+               //document.getElementsByClassName("row _0")[1].textContent;            
+
+        }
+         var bubbleFunction = function(){             
+            document.getElementById("changeYear").innerHTML = this.childNodes[1].textContent;
+            changeYear()
+                
+               //document.getElementsByClassName("node")[0].childNodes[1].textContent           
+
+        }
+        classname[1].addEventListener('click', myFunction, false);
+        classname1[1].addEventListener('click', myFunction, false);
+        classname2[1].addEventListener('click', myFunction, false);
+        classname3[1].addEventListener('click', myFunction, false);
+        classname4[1].addEventListener('click', myFunction, false);
+        classname5[1].addEventListener('click', myFunction, false);
+        classname6[1].addEventListener('click', myFunction, false);
+        classname7[1].addEventListener('click', myFunction, false);
+        classname8[1].addEventListener('click', myFunction, false);
+        classname9[1].addEventListener('click', myFunction, false);
+        classname10[1].addEventListener('click', myFunction, false);
+
+        bubble[0].addEventListener('click', bubbleFunction, false);
+        bubble[1].addEventListener('click', bubbleFunction, false);
+        bubble[2].addEventListener('click', bubbleFunction, false);
+        bubble[3].addEventListener('click', bubbleFunction, false);
+        bubble[4].addEventListener('click', bubbleFunction, false);
+        bubble[5].addEventListener('click', bubbleFunction, false);
+        bubble[6].addEventListener('click', bubbleFunction, false);
+        bubble[7].addEventListener('click', bubbleFunction, false);
+        bubble[8].addEventListener('click', bubbleFunction, false);
+        
+    
+</script>      
 
 <!-- JS Global Compulsory -->           
 <script src="assets/plugins/jquery/jquery.min.js"></script>

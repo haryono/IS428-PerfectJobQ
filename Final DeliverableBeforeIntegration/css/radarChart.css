@@ -1,0 +1,118 @@
+.radar-chart .level {
+  stroke: grey;
+  stroke-width: 0.5;
+}
+
+.radar-chart .axis line {
+  stroke: grey;
+  stroke-width: 1;
+}
+.radar-chart .axis .legend {
+  font-family: sans-serif;
+  font-size: 10px;
+}
+.radar-chart .axis .legend.top {
+  dy:1em;
+}
+.radar-chart .axis .legend.left {
+  text-anchor: start;
+}
+.radar-chart .axis .legend.middle {
+  text-anchor: middle;
+}
+.radar-chart .axis .legend.right {
+  text-anchor: end;
+}
+
+.radar-chart .tooltip {
+  font-family: sans-serif;
+  font-size: 13px;
+  transition: opacity 200ms;
+  opacity: 0;
+}
+.radar-chart .tooltip.visible {
+  opacity: 1;
+}
+
+/* area transition when hovering */
+.radar-chart .area {
+  stroke-width: 2;
+  fill-opacity: 0.5;
+}
+.radar-chart.focus .area {
+  fill-opacity: 0.1;
+}
+.radar-chart.focus .area.focused {
+  fill-opacity: 0.7;
+}
+
+.radar-chart .circle {
+  fill-opacity: 0.9;
+}
+
+/* transitions */
+.radar-chart .area, .radar-chart .circle {
+  transition: opacity 300ms, fill-opacity 200ms;
+  opacity: 1;
+}
+.radar-chart .d3-enter, .radar-chart .d3-exit {
+  opacity: 0;
+}
+
+.radar-chart .area {
+  fill-opacity: 0.7;
+}
+.radar-chart.focus .area {
+  fill-opacity: 0.3;
+}
+.radar-chart.focus .area.focused {
+  fill-opacity: 0.9;
+}
+.area.Manufacturing, .Manufacturing .circle {
+  fill: #FFD700;
+  stroke: none;
+}
+.area.Construction, .Construction .circle {
+  fill: #FF34B3;
+  stroke: none;
+}
+.area.Service, .Service .circle {
+  fill: #E0FFFF;
+  stroke: none;
+}
+.area.Wholesale_And_Retail_Trade, .Wholesale_And_Retail_Trade .circle {
+  fill: #FFDEAD;
+  stroke: none;
+}
+.area.Transportation_and_Storage, .Transportation_and_Storage .circle {
+  fill: #DDA0DD;
+  stroke: none;
+}
+.area.Accomodation_And_Food_Service, .Accomodation_And_Food_Service .circle {
+  fill: #FFF5EE;
+  stroke: none;
+}
+.area.Information_And_Communications, .AInformation_And_Communications .circle {
+  fill: #98FB98;
+  stroke: none;
+}
+.area.Financial_And_Insurance_Services, .Financial_And_Insurance_Services .circle {
+  fill: #48D1CC;
+  stroke: none;
+}
+.area.Real_Estate_Services, .Real_Estate_Services .circle {
+  fill: #00BFFF;
+  stroke: none;
+}
+.area.Professional_Services, .Professional_Services .circle {
+  fill: #FFF8DC;
+  stroke: none;
+}
+.area.Administrative_And_Support_Services, .Administrative_And_Support_Services .circle {
+  fill: #1E90FF;
+  stroke: none;
+}
+.area.Community_And_Personal_Services, .Community_And_Personal_Services .circle {
+  fill: #FFF0F5;
+  stroke: none;
+}
