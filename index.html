@@ -160,10 +160,15 @@
     <div class="container">
 
 <button class="btn-u" data-toggle="modal" data-target=".bs-example-modal-sm" onClick="fullwin()"><i class="fa fa-arrows-alt"></i> Click here to view diagrams in Full Screen</button><button class="btn-u btn-brd btn-brd-hover rounded btn-u-sea btn-u-lg pull-right" type="button" onclick="javascript:location.reload();" ><i class="fa fa-unlink"></i> Reset All Diagram Here</button>
+<br />
+<br />
+<div class="shadow-wrapper">
+                    <div class="tag-box tag-box-v1 box-shadow shadow-effect-2">
+                        <h2>Workplace & Employment Condition - 2005/01/01-2013/12/31</h2>
+                    </div>
+                </div>
 
-
-<h2>Workplace & Employment Condition - 2005/01/01-2013/12/31</h2>
-
+<br />
 <div class="row">
 
     
@@ -174,7 +179,7 @@
          <div id="day-of-week-chart" >
          <div class="clearfix"></div>   
          <strong>Year Quarter</strong>
-        <a class="reset" href="javascript:dayOfWeekChart.filterAll();dc.redrawAll();" style="display: none;">reset</a>
+        <a class="reset" href="javascript:IndustryChart.filterAll();dc.redrawAll();" style="display: none;">reset</a>
         
 
     </div>
@@ -183,7 +188,7 @@
         <div id="monthly-move-chart">
             <strong>Monthly Total Employee and Average Income Chart</strong>
             <span class="reset" style="display: none;">range: <span class="filter"></span></span>
-            <a class="reset" href="javascript:moveChart.filterAll();volumeChart.filterAll();dc.redrawAll();"
+            <a class="reset" href="javascript:compositeLineChart.filterAll();volumeChart.filterAll();dc.redrawAll();"
                style="display: none;">reset</a>
             <div class="clearfix"></div>
         </div>
@@ -216,6 +221,8 @@
 </div>
 
 <div class="row"><CENTER>
+    <br />
+    <br />
  <!--   <div id="gain-loss-chart">
         <strong>Days by Gain/Loss</strong>
         <a class="reset" href="javascript:gainOrLossChart.filterAll();dc.redrawAll();" style="display: none;">reset</a>

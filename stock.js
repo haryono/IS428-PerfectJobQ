@@ -9,10 +9,10 @@
 // Note: It is often a good idea to have these objects accessible at the global scope so that they can be modified or
 // filtered by other page controls.
 var gainOrLossChart = dc.pieChart('#gain-loss-chart');
-var fluctuationChart = dc.barChart('#fluctuation-chart');
+var totalEmployeeChart = dc.barChart('#totalEmployee-chart');
 var quarterChart = dc.pieChart('#quarter-chart');
 var IndustryChart = dc.rowChart('#day-of-week-chart');
-var moveChart = dc.compositeChart('#monthly-move-chart'); // haryono- Originally line chart changed to composite chart
+var compositeLineChart = dc.compositeChart('#monthly-move-chart'); // haryono- Originally line chart changed to composite chart
 var volumeChart = dc.barChart('#monthly-volume-chart');
 var yearlyBubbleChart = dc.bubbleChart('#yearly-bubble-chart');
 
@@ -82,15 +82,15 @@ d3.csv('trial4.csv', function (data) {
                   p.quarterCount += 1;
                 }
             }
-            p.absGain += +v.volume; // x-axis     //Huiwen
-            //console.log(p.absGain);
-            p.fluctuation += +v.NumberOfEmployee;      //Huiwen
+            p.empIncrease += +v.volume; // x-axis     //
+            //console.log(p.empIncrease);
+            p.totalEmployee += +v.NumberOfEmployee;      //
             p.sumIndex += (v.open + v.close) / 2; // average 
             p.avgIndex = p.sumIndex / p.count; // em
-            p.percentageGain = p.absGain/(p.fluctuation) * 100;//Huiwen
-            p.fluctuationPercentage = p.fluctuation/(p.quarterCount); //*size //Huiwen
-            p.totalSalary += v.high*1; //Huiwen
-            p.salary = p.totalSalary/p.count;    //Huiwen
+            p.percentageGain = p.empIncrease/(p.totalEmployee) * 100;//
+            p.totalEmployeePercentage = p.totalEmployee/(p.quarterCount); //*size //
+            p.totalSalary += v.high*1; //
+            p.salary = p.totalSalary/p.count;    //
             return p;
         },
         /* callback for when data is removed from the current filter results */
@@ -106,28 +106,28 @@ d3.csv('trial4.csv', function (data) {
                   p.quarterCount += 1;
                 }
             }
-            p.absGain -= +v.volume;    //Huiwen
-            p.fluctuation -= +v.NumberOfEmployee;       //Huiwen
+            p.empIncrease -= +v.volume;    //
+            p.totalEmployee -= +v.NumberOfEmployee;       //
             p.sumIndex -= (v.open + v.close) / 2;
             p.avgIndex = p.sumIndex / p.count;
-            p.percentageGain = p.absGain/(p.fluctuation) * 100;    //Huiwen
-            p.fluctuationPercentage = p.fluctuation/p.quarterCount;            //Huiwen
-            p.totalSalary -= +v.high;                       //Huiwen
-            p.salary = p.totalSalary/p.count;             //Huiwen
+            p.percentageGain = p.empIncrease/(p.totalEmployee) * 100;    //
+            p.totalEmployeePercentage = p.totalEmployee/p.quarterCount;            //
+            p.totalSalary -= +v.high;                       //
+            p.salary = p.totalSalary/p.count;             //
             return p;
         },
         /* initialize p */
         function () {
             return {
                 count: 0,
-                absGain: 0,
-                fluctuation: 0,
-                fluctuationPercentage: 0,
+                empIncrease: 0,
+                totalEmployee: 0,
+                totalEmployeePercentage: 0,
                 sumIndex: 0,
                 avgIndex: 0,
-                percentageGain: 0, //Huiwen (comma)
-                totalSalary:0, //Huiwen
-                salary: 0, //Huiwen
+                percentageGain: 0, // (comma)
+                totalSalary:0, //
+                salary: 0, //
                 quarterCount : 0
             };
         }
@@ -135,7 +135,7 @@ d3.csv('trial4.csv', function (data) {
 
     // dimension by full date
     var dateDimension = ndx.dimension(function (d) {
-        return d.Industry;             //Huiwen
+        return d.Industry;             //
     });
 
     // dimension by month
@@ -206,10 +206,10 @@ d3.csv('trial4.csv', function (data) {
     var gainOrLossGroup = gainOrLoss.group();
 
     // determine a histogram of percent changes
-    var fluctuation = ndx.dimension(function (d) {
+    var totalEmployee = ndx.dimension(function (d) {
         return Math.round((d.close - d.open) / d.open * 100);
     });
-    var fluctuationGroup = fluctuation.group();
+    var totalEmployeeGroup = totalEmployee.group();
 
     // summerize volume by quarter
     var quarter = ndx.dimension(function (d) {
@@ -230,11 +230,11 @@ d3.csv('trial4.csv', function (data) {
 
     // counts per weekday
     var dayOfWeek = ndx.dimension(function (d) {
-        var day = d.Industry;   //Huiwen
-        var name = ['Manufacturing', 'Construction', 'Services', 'Wholesale & Retail Trade', 'Transportation and Storage', 'Accomodation and Food Services', 'Information and Communications','Financial and Insurance Services ', 'Real Estate Services', 'Professional Services','Administrative and Support Services', 'Community & Personal Services'];//Huiwen
+        var day = d.Industry;   //
+        var name = ['Manufacturing', 'Construction', 'Services', 'Wholesale & Retail Trade', 'Transportation and Storage', 'Accomodation and Food Services', 'Information and Communications','Financial and Insurance Services ', 'Real Estate Services', 'Professional Services','Administrative and Support Services', 'Community & Personal Services'];//
         //console.log(day + '.' + name[day]);
-        //return day + '.' + name[day];  //Huiwen
-        return day + '.' + day;  //Huiwen
+        //return day + '.' + name[day];  //
+        return day + '.' + day;  //
     });
     var dayOfWeekGroup = dayOfWeek.group();
 
@@ -261,7 +261,7 @@ d3.csv('trial4.csv', function (data) {
         .colors(colorbrewer.Reds[9]) // (optional) define color function or array for bubbles
         .colorDomain([2500,5300]) //(optional) define color domain to match your data domain if you want to bind data or
                                   //color
-                                  //Huiwen
+                                  //
         //##### Accessors
         //Accessor functions are applied to each value returned by the grouping
         //
@@ -275,29 +275,29 @@ d3.csv('trial4.csv', function (data) {
             return p.value.salary;
         })
         .keyAccessor(function (p) {
-            return p.value.absGain;
+            return p.value.empIncrease;
         })
         .valueAccessor(function (p) {
             return p.value.percentageGain;
         })
         .radiusValueAccessor(function (p) {
-            return p.value.fluctuationPercentage;
+            return p.value.totalEmployeePercentage;
         })
         .maxBubbleRelativeSize(0.1)
-        .x(d3.scale.linear().domain([-100, 400])) //Huiwen
-        .y(d3.scale.linear().domain([-1, 10]))  //Huiwen
-        .r(d3.scale.linear().domain([-1000, 18000])) //Huiwen
+        .x(d3.scale.linear().domain([-100, 400])) //
+        .y(d3.scale.linear().domain([-1, 10]))  //
+        .r(d3.scale.linear().domain([-1000, 18000])) //
         //##### Elastic Scaling
         //`.elasticX` and `.elasticX` determine whether the chart should rescale each axis to fit data.
         //The `.yAxisPadding` and `.xAxisPadding` add padding to data above and below their max values in the same unit
         //domains as the Accessors.
         .elasticY(true)
         .elasticX(true)
-        .yAxisPadding(2)  //Huiwen
-        .xAxisPadding(50)  //Huiwen
+        .yAxisPadding(2)  //
+        .xAxisPadding(50)  //
         .renderHorizontalGridLines(true) // (optional) render horizontal grid lines, :default=false
         .renderVerticalGridLines(true) // (optional) render vertical grid lines, :default=false
-        .xAxisLabel('Employee Increase (thousand)') // (optional) render an axis label below the x axis   //Huiwen
+        .xAxisLabel('Employee Increase (thousand)') // (optional) render an axis label below the x axis   //
         .yAxisLabel('Employee Increase in %') // (optional) render a vertical axis lable left of the y axis
         //#### Labels and  Titles
         //Labels are displaed on the chart for each bubble. Titles displayed on mouseover.
@@ -309,10 +309,10 @@ d3.csv('trial4.csv', function (data) {
         .title(function (p) {
             return [
                 p.key,
-                'No of Employee: ' + numberFormat(p.value.fluctuationPercentage)+' (thousand)', //Huiwen
-                'No of Employee Increase: ' + numberFormat(p.value.absGain)+' (thousand)',
+                'No of Employee: ' + numberFormat(p.value.totalEmployeePercentage)+' (thousand)', //
+                'No of Employee Increase: ' + numberFormat(p.value.empIncrease)+' (thousand)',
                 'Percentage of Employee Increase: ' + numberFormat(p.value.percentageGain) + '%',
-                'Salary: S$'+ numberFormat(p.value.salary)                            //Huiwen
+                'Salary: S$'+ numberFormat(p.value.salary)                            //
             ].join('\n');
         })
         //#### Customize Axis
@@ -368,21 +368,21 @@ d3.csv('trial4.csv', function (data) {
         .group(quarterGroup);
 
     //#### Row Chart
-    IndustryChart.width(220)             //Huiwen
-        .height(300)                   //Huiwen
+    IndustryChart.width(220)             //
+        .height(300)                   //
         .margins({top: 20, left: 10, right: 10, bottom: 20})
         .group(dayOfWeekGroup)
         .dimension(dayOfWeek)
         // assign colors to each value in the x scale domain
         //.ordinalColors(['#3182bd', '#6baed6', '#9ecae1', '#c6dbef', '#dadaeb'])
-        .ordinalColors(['#3182bd'])          //Huiwen
+        .ordinalColors(['#3182bd'])          //
         .label(function (d) {
             return d.key.split('.')[1];
         })
         
         // title sets the row text
         .title(function (d) {
-            return d.key.split('.')[1]; //Huiwen
+            return d.key.split('.')[1]; //
         })
         .elasticX(true)
         .xAxis().ticks(4);
@@ -393,11 +393,11 @@ d3.csv('trial4.csv', function (data) {
     // to a specific group then any interaction with such chart will only trigger redraw
     // on other charts within the same chart group.
     /* dc.barChart('#volume-month-chart') */
-    fluctuationChart.width(420)
+    totalEmployeeChart.width(420)
         .height(180)
         .margins({top: 10, right: 50, bottom: 30, left: 40})
-        .dimension(fluctuation)
-        .group(fluctuationGroup)
+        .dimension(totalEmployee)
+        .group(totalEmployeeGroup)
         .elasticY(true)
         // (optional) whether bar should be center to its x value. Not needed for ordinal chart, :default=false
         .centerBar(true)
@@ -416,13 +416,13 @@ d3.csv('trial4.csv', function (data) {
         });
 
     // Customize axis
-    fluctuationChart.xAxis().tickFormat(
+    totalEmployeeChart.xAxis().tickFormat(
         function (v) { return v + '%'; });
-    fluctuationChart.yAxis().ticks(5);
+    totalEmployeeChart.yAxis().ticks(5);
 
     //#### Stacked Area Chart
     //Specify an area chart, by using a line chart with `.renderArea(true)`
-    moveChart
+    compositeLineChart
         //.renderArea(false) // Haryono- changing from line chart to area chart provided it is line chart, now cannot cause its composite
         .width(450)
         .height(200)
@@ -449,12 +449,12 @@ d3.csv('trial4.csv', function (data) {
         })
         // Haryono - Compose option to merge diverse graph type into single chart
         .compose([ // only usable on composite graph
-            dc.lineChart(moveChart)
+            dc.lineChart(compositeLineChart)
                     .group(indexAvgByMonthGroup, "Number of Employee")
                     .valueAccessor(function (d) {
                         return d.value.avg;
                     }),
-            dc.lineChart(moveChart)
+            dc.lineChart(compositeLineChart)
                     .group(monthlyMoveGroup, "Average Income")
                     .valueAccessor(function (d) {
                         return d.value.avg;
@@ -626,7 +626,7 @@ d3.csv('trial4.csv', function (data) {
                 layer
             .group(stateRaisedSum) // set crossfilter group
             // closure used to retrieve x value from multi-value group
-            .keyAccessor(function(p) {return p.value.absGain;})
+            .keyAccessor(function(p) {return p.value.empIncrease;})
             // closure used to retrieve y value from multi-value group
             .valueAccessor(function(p) {return p.value.percentageGain;})
             // (optional) define color function or array for bubbles
@@ -637,7 +637,7 @@ d3.csv('trial4.csv', function (data) {
             // (optional) define color value accessor
             .colorAccessor(function(d, i){return d.value;})
             // closure used to retrieve radius value from multi-value group
-            .radiusValueAccessor(function(p) {return p.value.fluctuationPercentage;})
+            .radiusValueAccessor(function(p) {return p.value.totalEmployeePercentage;})
             // set radius scale
             .r(d3.scale.linear().domain([0, 3]))
             // (optional) whether chart should render labels, :default = true
