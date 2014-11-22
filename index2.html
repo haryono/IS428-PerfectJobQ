@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Workplace & Employment Condition</title>
+
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/radarChart.css">
+    <link rel="stylesheet" type="text/css" href="css/dc.css"/>
+
+    <style>
+        #monthly-volume-chart g.y {
+            display: none;
+        }
+    </style>
+    
+
+
+</head>
+<body>
+
+<div class="container">
+
+<h2>Workplace & Employment Condition - 2005/01/01-2013/12/31</h2><button class="btn-u btn-brd btn-brd-hover rounded btn-u-sea btn-u-lg pull-right" type="button" onclick="javascript:location.reload();" ><i class="fa fa-unlink"></i> Reset All Diagram Here</button>
+
+<div class="row">
+
+    <div id="day-of-week-chart" >
+         <strong>Industry</strong>
+        <a class="reset" href="javascript:IndustryChart.filterAll();dc.redrawAll();" style="display: none;">reset</a>
+        <div class="clearfix"></div>  
+    </div>
+    
+    
+    <div>
+        <div id="monthly-move-chart">
+            <strong>Monthly Total Employee and Average Income Chart</strong>
+            <span class="reset" style="display: none;">range: <span class="filter"></span></span>
+            <a class="reset" href="javascript:moveChart.filterAll();volumeChart.filterAll();dc.redrawAll();"
+               style="display: none;">reset</a>
+            <div class="clearfix"></div>
+        </div>
+        <div id="monthly-volume-chart" align="middle">
+            <b>Below here:</b> select a <font color="red"><u><b>period range</b></u></font> to zoom in<br/ >
+        </div>
+    </div>
+
+    
+    <div id="yearly-bubble-chart" class="dc-chart" align="middle">
+        <a class="reset" href="javascript:yearlyBubbleChart.filterAll();dc.redrawAll();"
+           style="display: none;">reset</a>
+           <b>Below here:</b> select <font color="red"><u><b>years</b></u></font> to zoom in<br/ >
+           <small>Color: Salary [ Low to High - pale to strong red ] <br />
+            Radius: Number of employee [ Low to High - small to big radius]</small> 
+
+        <div class="clearfix"></div>
+    </div>
+    <br />
+    <!--Radar Chart Below-->
+    <div >
+        
+        <div class="chart-container" align="middle">
+            <div  id="changeYear" onclick="changeYear()"><strong><u>2013</u></strong></div>
+            <div  id="changeSector" onclick="testtest()"><strong>Construction</strong></div>
+        </div>
+    </div>
+    <div id="quarter-chart" align="middle">
+        <strong>Year Quarter</strong>
+        <a class="reset" href="javascript:quarterChart.filterAll();dc.redrawAll();" style="display: none;">reset</a>
+        <div class="clearfix"></div>
+    </div>
+   
+    
+</div>
+
+</div>
+
+<script type="text/javascript" src="js/d3.js"></script>
+<script type="text/javascript" src="js/crossfilter.js"></script>
+<script type="text/javascript" src="js/dc.js"></script>
+<script type="text/javascript" src="js/colorbrewer.js"></script>
+
+<script type="text/javascript" src="stock.js"></script>
+
+<script src="http://d3js.org/d3.v3.js"></script>
+<script src="js/radar-chart.js"></script>
+<script src="js/radarChartData.js"></script>
+
+<script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-33628816-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function () {
+        var ga = document.createElement('script');
+        ga.type = 'text/javascript';
+        ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+
+<script>
+        var classname = document.getElementsByClassName("row _0");
+        var classname1 = document.getElementsByClassName("row _1");
+        var classname2= document.getElementsByClassName("row _2");
+        var classname3= document.getElementsByClassName("row _3");
+        var classname4= document.getElementsByClassName("row _4");
+        var classname5= document.getElementsByClassName("row _5");
+        var classname6= document.getElementsByClassName("row _6");
+        var classname7= document.getElementsByClassName("row _7");
+        var classname8= document.getElementsByClassName("row _8");
+        var classname9= document.getElementsByClassName("row _9");
+        var classname10= document.getElementsByClassName("row _10");
+
+        var bubble = document.getElementsByClassName("node");
+
+
+        var myFunction = function(){                
+            document.getElementById("changeSector").innerHTML = this.textContent;
+            testtest();
+                
+               //document.getElementsByClassName("row _0")[1].textContent;            
+
+        }
+         var bubbleFunction = function(){             
+            document.getElementById("changeYear").innerHTML = this.childNodes[1].textContent;
+            changeYear()
+                
+               //document.getElementsByClassName("node")[0].childNodes[1].textContent           
+
+        }
+        classname[1].addEventListener('click', myFunction, false);
+        classname1[1].addEventListener('click', myFunction, false);
+        classname2[1].addEventListener('click', myFunction, false);
+        classname3[1].addEventListener('click', myFunction, false);
+        classname4[1].addEventListener('click', myFunction, false);
+        classname5[1].addEventListener('click', myFunction, false);
+        classname6[1].addEventListener('click', myFunction, false);
+        classname7[1].addEventListener('click', myFunction, false);
+        classname8[1].addEventListener('click', myFunction, false);
+        classname9[1].addEventListener('click', myFunction, false);
+        classname10[1].addEventListener('click', myFunction, false);
+
+        bubble[0].addEventListener('click', bubbleFunction, false);
+        bubble[1].addEventListener('click', bubbleFunction, false);
+        bubble[2].addEventListener('click', bubbleFunction, false);
+        bubble[3].addEventListener('click', bubbleFunction, false);
+        bubble[4].addEventListener('click', bubbleFunction, false);
+        bubble[5].addEventListener('click', bubbleFunction, false);
+        bubble[6].addEventListener('click', bubbleFunction, false);
+        bubble[7].addEventListener('click', bubbleFunction, false);
+        bubble[8].addEventListener('click', bubbleFunction, false);
+        
+    
+</script>
+
+</body>
+</html>

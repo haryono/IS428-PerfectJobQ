@@ -10,8 +10,8 @@ function testtest(){
 var RadarChart = {
   defaultConfig: {
     containerClass: 'radar-chart',
-    w: 400,
-    h: 400,
+    w: 250,
+    h: 250,
     factor: 0.95,
     factorLegend: 1,
     levels: 3,
@@ -21,7 +21,7 @@ var RadarChart = {
     axisLine: true,
     axisText: true,
     circles: true,
-    radius: 5,
+    radius: 10,
     axisJoin: function(d, i) {
       return d.className || i;
     },
@@ -177,12 +177,11 @@ var RadarChart = {
 
         polygon
           .filter(function(d){
-            console.log("log1"+changeSector);
             return d.className == changeSector;
           })
           .each(function(d, i) {
             var classed = {'d3-exit': 0}; // if exiting element is being reused
-            classed['radar-chart-serie' + i] = 1;
+            //classed['radar-chart-serie' + i] = 1;
             if(d.className) {
               classed[d.className] = 1;
             }

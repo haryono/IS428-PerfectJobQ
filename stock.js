@@ -11,7 +11,7 @@
 var gainOrLossChart = dc.pieChart('#gain-loss-chart');
 var fluctuationChart = dc.barChart('#fluctuation-chart');
 var quarterChart = dc.pieChart('#quarter-chart');
-var dayOfWeekChart = dc.rowChart('#day-of-week-chart');
+var IndustryChart = dc.rowChart('#day-of-week-chart');
 var moveChart = dc.compositeChart('#monthly-move-chart'); // haryono- Originally line chart changed to composite chart
 var volumeChart = dc.barChart('#monthly-volume-chart');
 var yearlyBubbleChart = dc.bubbleChart('#yearly-bubble-chart');
@@ -250,8 +250,8 @@ d3.csv('trial4.csv', function (data) {
     //on other charts within the same chart group.
     /* dc.bubbleChart('#yearly-bubble-chart', 'chartGroup') */
     yearlyBubbleChart
-        .width(990) // (optional) define chart width, :default = 200
-        .height(500)  // (optional) define chart height, :default = 200
+        .width(450) // (optional) define chart width, :default = 200
+        .height(200)  // (optional) define chart height, :default = 200
         .transitionDuration(1500) // (optional) define chart transition duration, :default = 750
         .margins({top: 10, right: 50, bottom: 30, left: 40})
         .dimension(yearlyDimension)
@@ -283,7 +283,7 @@ d3.csv('trial4.csv', function (data) {
         .radiusValueAccessor(function (p) {
             return p.value.fluctuationPercentage;
         })
-        .maxBubbleRelativeSize(0.3)
+        .maxBubbleRelativeSize(0.1)
         .x(d3.scale.linear().domain([-100, 400])) //Huiwen
         .y(d3.scale.linear().domain([-1, 10]))  //Huiwen
         .r(d3.scale.linear().domain([-1000, 18000])) //Huiwen
@@ -297,8 +297,8 @@ d3.csv('trial4.csv', function (data) {
         .xAxisPadding(50)  //Huiwen
         .renderHorizontalGridLines(true) // (optional) render horizontal grid lines, :default=false
         .renderVerticalGridLines(true) // (optional) render vertical grid lines, :default=false
-        .xAxisLabel('No of Employee Increase (thousand)') // (optional) render an axis label below the x axis   //Huiwen
-        .yAxisLabel('Percentage of Employee Increase %') // (optional) render a vertical axis lable left of the y axis
+        .xAxisLabel('Employee Increase (thousand)') // (optional) render an axis label below the x axis   //Huiwen
+        .yAxisLabel('Employee Increase in %') // (optional) render a vertical axis lable left of the y axis
         //#### Labels and  Titles
         //Labels are displaed on the chart for each bubble. Titles displayed on mouseover.
         .renderLabel(true) // (optional) whether chart should render labels, :default = true
@@ -362,14 +362,14 @@ d3.csv('trial4.csv', function (data) {
 
     quarterChart.width(180)
         .height(180)
-        .radius(80)
+        .radius(70)
         .innerRadius(30)
         .dimension(quarter)
         .group(quarterGroup);
 
     //#### Row Chart
-    dayOfWeekChart.width(230)             //Huiwen
-        .height(350)                   //Huiwen
+    IndustryChart.width(220)             //Huiwen
+        .height(300)                   //Huiwen
         .margins({top: 20, left: 10, right: 10, bottom: 20})
         .group(dayOfWeekGroup)
         .dimension(dayOfWeek)
@@ -424,10 +424,10 @@ d3.csv('trial4.csv', function (data) {
     //Specify an area chart, by using a line chart with `.renderArea(true)`
     moveChart
         //.renderArea(false) // Haryono- changing from line chart to area chart provided it is line chart, now cannot cause its composite
-        .width(990)
-        .height(250)
+        .width(450)
+        .height(200)
         .transitionDuration(1000)
-        .margins({top: 50, right: 50, bottom: 25, left: 40})
+        .margins({top: 50, right: 50, bottom: 35, left: 40})
         .dimension(moveMonths)
         .mouseZoomable(false) // Haryono- zoomable function within graph - useless
         // Specify a range chart to link the brush extent of the range with the zoom focue of the current chart.
@@ -438,8 +438,15 @@ d3.csv('trial4.csv', function (data) {
         .elasticY(true)
         .renderVerticalGridLines(true) // to have vertical gridline
         .renderHorizontalGridLines(true)
-        .legend(dc.legend().x(800).y(10).itemHeight(13).gap(5))
+        .legend(dc.legend().x(40))
         .brushOn(false)
+        .title(function (d) {
+            var value = d.value.avg ? d.value.avg : d.value;
+            if (isNaN(value)) {
+                value = 0;
+            }
+            return 'X-Axis : '+dateFormat(d.key) + '\nY-Axis : ' + numberFormat(value);
+        })
         // Haryono - Compose option to merge diverse graph type into single chart
         .compose([ // only usable on composite graph
             dc.lineChart(moveChart)
@@ -452,15 +459,12 @@ d3.csv('trial4.csv', function (data) {
                     .valueAccessor(function (d) {
                         return d.value.avg;
                     })
-                    .title(function (d){
-                          return dateFormat(d.key) + '\n Average Income : '+d.value.avg;
-                      })
                     .colors(d3.scale.ordinal().range(['red','green','blue']))
                     //.colors(["orange"])
                     .useRightYAxis(true)
         ])
-        .yAxisLabel("Number of Employee (thousand)")
-        .rightYAxisLabel("Average Income (S$)")
+        .yAxisLabel("No. of Employee (thousand)")
+        .rightYAxisLabel("Average Income(S$)")
         .xAxisLabel("Year");
         /*
         // Add the base layer of the stack with group. The second parameter specifies a series name for use in the
@@ -484,7 +488,7 @@ d3.csv('trial4.csv', function (data) {
             return dateFormat(d.key) + '\n' + numberFormat(value);
         });
         */
-    volumeChart.width(990)
+    volumeChart.width(490)
         .height(55)
         .margins({top: 0, right: 50, bottom: 20, left: 40})
         .dimension(moveMonths)

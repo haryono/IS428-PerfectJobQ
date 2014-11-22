@@ -97,8 +97,7 @@
         <!-- Navbar -->
         <div class="navbar navbar-default mega-menu" role="navigation">
             <div class="container">
-               
-
+                   
                
 
                     <ul class="nav navbar-nav">
@@ -160,15 +159,60 @@
     <!--=== Registre ===-->
     <div class="container">
 
-<h2>Workplace & Employment Condition  2005/01/01-2013/12/31</h2>
-<p>Color: Salary; Size: number of employee; x axis: number of employee increase; y axis: percentage of employee increase </p>
-<div class="row"><button class="btn-u btn-brd btn-brd-hover rounded btn-u-sea btn-u-lg pull-right" type="button" onclick="javascript:dc.filterAll(); dc.renderAll();" ><i class="fa fa-unlink"></i> Reset All Diagram Here</button>
-    <div id="yearly-bubble-chart" class="dc-chart">
+<button class="btn-u" data-toggle="modal" data-target=".bs-example-modal-sm" onClick="fullwin()"><i class="fa fa-arrows-alt"></i> Click here to view diagrams in Full Screen</button><button class="btn-u btn-brd btn-brd-hover rounded btn-u-sea btn-u-lg pull-right" type="button" onclick="javascript:location.reload();" ><i class="fa fa-unlink"></i> Reset All Diagram Here</button>
+
+
+<h2>Workplace & Employment Condition - 2005/01/01-2013/12/31</h2>
+
+<div class="row">
+
+    
+    <div id="quarter-chart">
+        <strong>Industry</strong>
+        <a class="reset" href="javascript:quarterChart.filterAll();dc.redrawAll();" style="display: none;">reset</a>
+        <div class="clearfix"></div>
+         <div id="day-of-week-chart" >
+         <div class="clearfix"></div>   
+         <strong>Year Quarter</strong>
+        <a class="reset" href="javascript:dayOfWeekChart.filterAll();dc.redrawAll();" style="display: none;">reset</a>
+        
+
+    </div>
+    </div>
+    <div>
+        <div id="monthly-move-chart">
+            <strong>Monthly Total Employee and Average Income Chart</strong>
+            <span class="reset" style="display: none;">range: <span class="filter"></span></span>
+            <a class="reset" href="javascript:moveChart.filterAll();volumeChart.filterAll();dc.redrawAll();"
+               style="display: none;">reset</a>
+            <div class="clearfix"></div>
+        </div>
+        <div id="monthly-volume-chart" align="middle">
+            <b>Below here:</b> select a <font color="red"><u><b>period range</b></u></font> to zoom in<br/ >
+        </div>
+    </div>
+    
+    <div id="yearly-bubble-chart" class="dc-chart" align="middle">
         <a class="reset" href="javascript:yearlyBubbleChart.filterAll();dc.redrawAll();"
            style="display: none;">reset</a>
+           <b>Below here:</b> select <font color="red"><u><b>years</b></u></font> to zoom in<br/ >
+           <small>Color: Salary [ Low to High - pale to strong red ] <br />
+            Radius: Number of employee [ Low to High - small to big radius]</small> 
 
         <div class="clearfix"></div>
     </div>
+    <br />
+    <!--Radar Chart Below-->
+    <div >
+        
+        <div class="chart-container" align="middle">
+            <div  id="changeYear" onclick="changeYear()"><strong><u>2013</u></strong></div>
+            <div  id="changeSector" onclick="testtest()"><strong>Construction</strong></div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+   
+    
 </div>
 
 <div class="row"><CENTER>
@@ -179,27 +223,8 @@
         <div class="clearfix"></div>
     </div>
   -->
-    <div id="quarter-chart">
-        <strong>Quarters</strong>
-        <a class="reset" href="javascript:quarterChart.filterAll();dc.redrawAll();" style="display: none;">reset</a>
-
-        <div class="clearfix"></div>
-    </div>
-
-    <div id="day-of-week-chart">
-        <strong>Industry</strong>
-        <a class="reset" href="javascript:dayOfWeekChart.filterAll();dc.redrawAll();" style="display: none;">reset</a>
-
-        <div class="clearfix"></div>
-    </div>
-
-    <!--Radar Chart Below-->
-    <div style="height:500px;weight:500px">
-        <div id="changeYear" onclick="changeYear()"><strong>2013</strong></div>
-        <div id="changeSector" onclick="testtest()"><strong>Construction</strong></div>
-        <div class="chart-container"></div>
-        
-    </div>
+    
+    
 
     <!--<div id="fluctuation-chart">
         <strong>Percentage increase of Employment(%)</strong>
@@ -210,37 +235,28 @@
     </div>     -->
 </CENTER>
 </div>
+<div class="fb-comments" data-href="http://is428perfectjob-advlearning.rhcloud.com" data-width="100%" data-numposts="5" data-colorscheme="light"></div>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=611013632284517&version=v2.0";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
 
-<div class="row">
-    <div id="monthly-move-chart">
-        <strong>Monthly Total Employee and Average Income Chart</strong>
-        <span class="reset" style="display: none;">range: <span class="filter"></span></span>
-        <a class="reset" href="javascript:moveChart.filterAll();volumeChart.filterAll();dc.redrawAll();"
-           style="display: none;">reset</a>
-
-        <div class="clearfix"></div>
-    </div>
-</div>
-
-<div class="row">
-    <div id="monthly-volume-chart">
-    </div>
-    <p class="muted pull-right" style="margin-right: 15px;">select a time range to zoom in</p>
-</div>
 <!--
 <div class="row">
     <div>
         <div class="dc-data-count">
             <span class="filter-count"></span> selected out of <span class="total-count"></span> records | <a
-                href="javascript:dc.filterAll(); dc.renderAll();">Reset All</a>
+                href="javascript:location.reload();">Reset All</a>
         </div>
     </div>
     <table class="table table-hover dc-data-table">
     </table>
 </div>
 -->
-<div class="clearfix"></div>
-
 </div>
 
 </div>
@@ -268,134 +284,6 @@
 
     <!--=== Footer v4 ===-->
     <div class="footer-v4">
-        <div class="footer">
-            <div class="container">
-                <div class="row">
-                    <!-- About -->
-                    <div class="col-md-4 md-margin-bottom-40">
-                        <!--img class="footer-logo" src="assets/img/logo-2.png" alt=""-->
-                        <p>About Haryono dolor sit amet, consectetur adipiscing elit. Maecenas eget nisl id libero tincidunt sodales.</p>
-                        <br>
-                        <ul class="list-unstyled address-list margin-bottom-20">
-                            <li><i class="fa fa-angle-right"></i>California, US, Lorem Lis Street, Orange, 25</li>
-                            <li><i class="fa fa-angle-right"></i>Phone: 800 123 3456</li>
-                            <li><i class="fa fa-angle-right"></i>Fax: 800 123 3456</li>
-                            <li><i class="fa fa-angle-right"></i>Email: info@anybiz.co</li>
-                        </ul>
-
-                        <ul class="list-inline shop-social">
-                            <li><a href="#"><i class="fb rounded-md fa fa-facebook"></i></a></li>
-                            <li><a href="#"><i class="tw rounded-md fa fa-twitter"></i></a></li>
-                            <li><a href="#"><i class="gp rounded-md fa fa-google-plus"></i></a></li>
-                            <li><a href="#"><i class="yt rounded-md fa fa-youtube"></i></a></li>
-                        </ul>
-                    </div>
-                    <!-- End About -->                    
-
-                    <!-- Simple List -->
-                    <div class="col-md-2 col-sm-3">
-                        <div class="row">
-                            <div class="col-sm-12 col-xs-6">
-                                <h2 class="thumb-headline">Secciones</h2>
-                                <ul class="list-unstyled simple-list margin-bottom-20">
-                                    <li><a href="#">Ultima Hora</a></li>
-                                    <li><a href="#">Exclusiva</a></li>
-                                    <li><a href="#">Documentos </a></li>
-                                    <li><a href="#">Francisco papa</a></li>
-                                    <li>...</li>
-                                </ul>
-                            </div>    
-
-                            <div class="col-sm-12 col-xs-6">
-                                <h2 class="thumb-headline">Temas</h2>
-                                <ul class="list-unstyled simple-list">
-                                    <li><a href="#">Ultima Hora</a></li>
-                                    <li><a href="#">Exclusiva</a></li>
-                                    <li><a href="#">Documentos </a></li>
-                                    <li><a href="#">Francisco papa</a></li>
-                                    <li>...</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>    
-
-                    <div class="col-md-2 col-sm-3">
-                        <div class="row">
-                            <div class="col-sm-12 col-xs-6">
-                                <h2 class="thumb-headline">Utilidades</h2>
-                                <ul class="list-unstyled simple-list margin-bottom-20">
-                                    <li><a href="#">Ultima Hora</a></li>
-                                    <li><a href="#">Exclusiva</a></li>
-                                    <li><a href="#">Documentos </a></li>
-                                    <li>...</li>
-                                </ul>
-                            </div>    
-
-                            <div class="col-sm-12 col-xs-6">
-                                <h2 class="thumb-headline">Documentos</h2>
-                                <ul class="list-unstyled simple-list">
-                                    <li><a href="#">Ultima Hora</a></li>
-                                    <li><a href="#">Exclusiva</a></li>
-                                    <li><a href="#">Documentos </a></li>
-                                    <li><a href="#">Francisco papa</a></li>
-                                    <li>...</li>
-                                </ul>
-                            </div>
-                        </div>        
-                    </div>
-
-                    <div class="col-md-2 col-sm-3">
-                        <div class="row">
-                            <div class="col-sm-12 col-xs-6">
-                                <h2 class="thumb-headline">Publicidad</h2>
-                                <ul class="list-unstyled simple-list margin-bottom-20">
-                                    <li><a href="#">Ultima Hora</a></li>
-                                    <li><a href="#">Exclusiva</a></li>
-                                    <li><a href="#">Documentos </a></li>
-                                    <li><a href="#">Francisco papa</a></li>
-                                    <li>...</li>
-                                </ul>
-                            </div>    
-
-                            <div class="col-sm-12 col-xs-6">
-                                <h2 class="thumb-headline">Contacto</h2>
-                                <ul class="list-unstyled simple-list">
-                                    <li><a href="#">Ultima Hora</a></li>
-                                    <li><a href="#">Exclusiva</a></li>
-                                    <li><a href="#">Documentos </a></li>
-                                    <li><a href="#">Francisco papa</a></li>
-                                    <li>...</li>
-                                </ul>
-                            </div>
-                        </div>        
-                    </div>
-
-                    <div class="col-md-2 col-sm-3">
-                        <div class="row">
-                            <div class="col-sm-12 col-xs-6">
-                                <h2 class="thumb-headline">Utilidades</h2>
-                                <ul class="list-unstyled simple-list margin-bottom-20">
-                                    <li><a href="#">Ultima Hora</a></li>
-                                    <li><a href="#">Exclusiva</a></li>
-                                    <li>...</li>
-                                </ul>
-                            </div>
-                                
-                            <div class="col-sm-12 col-xs-6">
-                                <h2 class="thumb-headline">Documentos</h2>
-                                <ul class="list-unstyled simple-list">
-                                    <li><a href="#">Ultima Hora</a></li>
-                                    <li><a href="#">Exclusiva</a></li>
-                                    <li>...</li>
-                                </ul>
-                            </div>
-                        </div>        
-                    </div>
-                    <!-- End Simple List -->
-                </div><!--/end row-->
-            </div><!--/end continer-->
-        </div><!--/footer-->
-
         <div class="copyright">
             <div class="container">
                 <div class="row">
@@ -418,7 +306,6 @@
         </div><!--/copyright--> 
     </div>
     <!--=== End Footer v4 ===-->
-</div><!--/wrapper-->
 <!-- d3.js -->
 <script type="text/javascript" src="js/d3.js"></script>
 <script type="text/javascript" src="js/crossfilter.js"></script>
@@ -444,11 +331,9 @@
         var s = document.getElementsByTagName('script')[0];
         s.parentNode.insertBefore(ga, s);
     })();
-</script>
 
-<script>
         var classname = document.getElementsByClassName("row _0");
-        var classname1 = document.getElementsByClassName("row _1");
+        var classname1= document.getElementsByClassName("row _1");
         var classname2= document.getElementsByClassName("row _2");
         var classname3= document.getElementsByClassName("row _3");
         var classname4= document.getElementsByClassName("row _4");
@@ -498,6 +383,10 @@
         bubble[7].addEventListener('click', bubbleFunction, false);
         bubble[8].addEventListener('click', bubbleFunction, false);
         
+        function fullwin(){
+            window.open("index2.html","bfs","fullscreen,scrollbars")
+        }
+
     
 </script>      
 
